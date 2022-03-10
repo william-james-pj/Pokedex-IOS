@@ -13,6 +13,11 @@
 		E053C32F27DA6F1D00D0EB3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E053C32D27DA6F1D00D0EB3A /* Main.storyboard */; };
 		E053C33127DA6F2600D0EB3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E053C33027DA6F2600D0EB3A /* Assets.xcassets */; };
 		E053C33427DA6F2600D0EB3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E053C33227DA6F2600D0EB3A /* LaunchScreen.storyboard */; };
+		E053C33F27DA717900D0EB3A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E053C33E27DA717900D0EB3A /* HomeViewController.swift */; };
+		E053C34327DA74F100D0EB3A /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34127DA74F000D0EB3A /* OpenSans-Bold.ttf */; };
+		E053C34427DA74F100D0EB3A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34227DA74F100D0EB3A /* OpenSans-Regular.ttf */; };
+		E053C34727DA752700D0EB3A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */; };
+		E053C34827DA752700D0EB3A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		E053C33027DA6F2600D0EB3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E053C33327DA6F2600D0EB3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E053C33527DA6F2600D0EB3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E053C33E27DA717900D0EB3A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E053C34127DA74F000D0EB3A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		E053C34227DA74F100D0EB3A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,8 @@
 		E053C32627DA6F1D00D0EB3A /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				E053C33B27DA713100D0EB3A /* Presentation */,
+				E053C34027DA73FF00D0EB3A /* Fonts */,
 				E053C32727DA6F1D00D0EB3A /* AppDelegate.swift */,
 				E053C32927DA6F1D00D0EB3A /* SceneDelegate.swift */,
 				E053C32B27DA6F1D00D0EB3A /* ViewController.swift */,
@@ -65,6 +77,41 @@
 				E053C33527DA6F2600D0EB3A /* Info.plist */,
 			);
 			path = Pokedex;
+			sourceTree = "<group>";
+		};
+		E053C33B27DA713100D0EB3A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E053C33C27DA713400D0EB3A /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E053C33C27DA713400D0EB3A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E053C33D27DA713C00D0EB3A /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E053C33D27DA713C00D0EB3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E053C33E27DA717900D0EB3A /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E053C34027DA73FF00D0EB3A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */,
+				E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */,
+				E053C34127DA74F000D0EB3A /* OpenSans-Bold.ttf */,
+				E053C34227DA74F100D0EB3A /* OpenSans-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +172,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E053C34427DA74F100D0EB3A /* OpenSans-Regular.ttf in Resources */,
+				E053C34827DA752700D0EB3A /* Roboto-Regular.ttf in Resources */,
 				E053C33427DA6F2600D0EB3A /* LaunchScreen.storyboard in Resources */,
+				E053C34727DA752700D0EB3A /* Roboto-Bold.ttf in Resources */,
 				E053C33127DA6F2600D0EB3A /* Assets.xcassets in Resources */,
+				E053C34327DA74F100D0EB3A /* OpenSans-Bold.ttf in Resources */,
 				E053C32F27DA6F1D00D0EB3A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +192,7 @@
 				E053C32C27DA6F1D00D0EB3A /* ViewController.swift in Sources */,
 				E053C32827DA6F1D00D0EB3A /* AppDelegate.swift in Sources */,
 				E053C32A27DA6F1D00D0EB3A /* SceneDelegate.swift in Sources */,
+				E053C33F27DA717900D0EB3A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +347,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,6 +376,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
