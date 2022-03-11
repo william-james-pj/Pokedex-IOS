@@ -18,6 +18,8 @@
 		E053C34427DA74F100D0EB3A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34227DA74F100D0EB3A /* OpenSans-Regular.ttf */; };
 		E053C34727DA752700D0EB3A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */; };
 		E053C34827DA752700D0EB3A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */; };
+		E0ED409B27DB731600E0A71F /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED409A27DB731600E0A71F /* PokemonCollectionViewCell.swift */; };
+		E0ED409F27DB73E200E0A71F /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ED409E27DB73E200E0A71F /* PokemonModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		E053C34227DA74F100D0EB3A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		E0ED409A27DB731600E0A71F /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0ED409E27DB73E200E0A71F /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		E053C32627DA6F1D00D0EB3A /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				E0ED409C27DB736A00E0A71F /* Network */,
 				E053C33B27DA713100D0EB3A /* Presentation */,
 				E053C34027DA73FF00D0EB3A /* Fonts */,
 				E053C32727DA6F1D00D0EB3A /* AppDelegate.swift */,
@@ -98,6 +103,7 @@
 		E053C33D27DA713C00D0EB3A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0ED409927DB72E800E0A71F /* Cell */,
 				E053C33E27DA717900D0EB3A /* HomeViewController.swift */,
 			);
 			path = View;
@@ -112,6 +118,30 @@
 				E053C34227DA74F100D0EB3A /* OpenSans-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E0ED409927DB72E800E0A71F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0ED409A27DB731600E0A71F /* PokemonCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E0ED409C27DB736A00E0A71F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E0ED409D27DB737600E0A71F /* Model */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E0ED409D27DB737600E0A71F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E0ED409E27DB73E200E0A71F /* PokemonModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,8 +220,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E053C32C27DA6F1D00D0EB3A /* ViewController.swift in Sources */,
+				E0ED409F27DB73E200E0A71F /* PokemonModel.swift in Sources */,
 				E053C32827DA6F1D00D0EB3A /* AppDelegate.swift in Sources */,
 				E053C32A27DA6F1D00D0EB3A /* SceneDelegate.swift in Sources */,
+				E0ED409B27DB731600E0A71F /* PokemonCollectionViewCell.swift in Sources */,
 				E053C33F27DA717900D0EB3A /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

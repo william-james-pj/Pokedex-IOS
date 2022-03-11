@@ -125,7 +125,7 @@ class HomeViewController: UIViewController {
     fileprivate func setupCollection() {
         pokedexCollectionView.dataSource = self
         pokedexCollectionView.delegate = self
-        pokedexCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: resuseIdentifier)
+        pokedexCollectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: resuseIdentifier)
     }
     
     // MARK: - Methods
