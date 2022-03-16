@@ -12,6 +12,11 @@ class HomeViewController: UIViewController {
     let resuseIdentifier = "PokemonCollectionViewCell"
     
     // MARK: - Variables
+    fileprivate var viewModel: HomeViewModel = {
+        return HomeViewModel()
+    }()
+    fileprivate var pokemonsData: [PokemonModel] = []
+    
     // MARK: - Components
     fileprivate let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -69,7 +74,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    fileprivate var pokedexCollectionView: UICollectionView = {
+    fileprivate let pokedexCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
@@ -117,6 +122,8 @@ class HomeViewController: UIViewController {
     // MARK: - Setup
     fileprivate func setupVC() {
         view.backgroundColor = .white
+        viewModel.delegate = self
+        
         buildHierarchy()
         buildConstraints()
         setupCollection()
@@ -138,7 +145,7 @@ class HomeViewController: UIViewController {
     
     fileprivate func buildConstraints() {
         NSLayoutConstraint.activate([
-            stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            stackBase.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             stackBase.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -150,23 +157,37 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        return
+// MARK: - extension HomeViewModelDelegate
+extension HomeViewController: HomeViewModelDelegate {
+    func collectionDataReload() {
+        pokemonsData = viewModel.pokemonsData
+        pokedexCollectionView.reloadData()
     }
 }
 
+// MARK: - extension CollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let seeVC = SeePokemonViewController()
+        seeVC.configCell(pokemonsData[indexPath.row])
+        self.navigationController?.pushViewController(seeVC, animated: true)
+    }
+}
+
+// MARK: - extension CollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return pokemonsData.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resuseIdentifier, for: indexPath) as! PokemonCollectionViewCell
+        cell.configCell(pokemon: pokemonsData[indexPath.row])
         return cell
     }
 }
 
+// MARK: - extension CollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2
@@ -174,6 +195,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - extension UITextField
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))

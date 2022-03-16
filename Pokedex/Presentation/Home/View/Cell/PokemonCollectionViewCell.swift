@@ -8,6 +8,9 @@
 import UIKit
 
 class PokemonCollectionViewCell: UICollectionViewCell {
+    // MARK: - Variables
+    fileprivate var getPokemonColor: GetPokemonColor = { return GetColorByType()}()
+    
     // MARK: - Components
     fileprivate let stackBase: UIStackView = {
         let stack = UIStackView()
@@ -16,6 +19,14 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
+    }()
+    
+    fileprivate let viewShadow: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 10
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     fileprivate let viewImage: UIView = {
@@ -94,7 +105,6 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Setup
     fileprivate func setupVC() {
-        self.backgroundColor = UIColor(red: 0.74, green: 0.88, blue: 0.81, alpha: 1)
         self.layer.cornerRadius = 10
         buildHierarchy()
         buildConstraints()
@@ -102,11 +112,13 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     func configCell(pokemon: PokemonModel) {
-        labelName.text = pokemon.name
-        labelNumber.text = "\(pokemon.id)"
+        labelName.text = pokemon.name?.capitalized
+        labelNumber.text = String(format: "%03d", pokemon.id ?? 0)
+        
+        self.backgroundColor = getPokemonColor.getColorByType(pokemonType: pokemon.types?[0].type.name ?? "")
         
         do {
-            guard let front_default = pokemon.sprites.front_default else {
+            guard let front_default = pokemon.sprites?.front_default else {
                 return
             }
             guard let url = URL(string: front_default) else { return }
@@ -118,6 +130,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func buildHierarchy() {
+        self.addSubview(viewShadow)
         self.addSubview(stackBase)
         stackBase.addArrangedSubview(viewImage)
         stackBase.addArrangedSubview(stackText())
@@ -128,6 +141,11 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     fileprivate func buildConstraints() {
         NSLayoutConstraint.activate([
+            viewShadow.topAnchor.constraint(equalTo: self.topAnchor),
+            viewShadow.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            viewShadow.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            viewShadow.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
             stackBase.topAnchor.constraint(equalTo: self.topAnchor),
             stackBase.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
