@@ -14,6 +14,7 @@ class PokemonModel: Codable {
     let weight: Int?
     let height: Int?
     let types: [PokemonTypeArrayModel]?
+    let stats: [PokemonStatsModel]
 }
 
 class SpritesModel: Codable {
@@ -35,4 +36,14 @@ class PokemonTypeArrayModel: Codable {
 class PokemonTypeModel: Codable {
     let name: String?
     let url: String?
+}
+
+class PokemonStatsModel: Codable {
+    let base_stat: Int
+    let effort: Int
+    let stat: PokemonStatModel
+}
+
+class PokemonStatModel: Codable {
+    let name: String
 }

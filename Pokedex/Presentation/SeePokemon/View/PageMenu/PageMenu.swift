@@ -93,6 +93,7 @@ class PageMenu: UIView {
             ])
         
         aboutPokemon.configCell(pokemonColor: pokemonColor, pokemonData: aboutPokemonType)
+        statsPokemon.configCell(pokemonColor: pokemonColor, pokemonData: pokemon)
     }
     
     fileprivate func buildHierarchy() {

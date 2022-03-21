@@ -76,10 +76,10 @@ class AboutPokemon: UIView {
         
         buildHierarchy()
         buildConstraints()
-        setupTable()
+        setupCollection()
     }
     
-    fileprivate func setupTable() {
+    fileprivate func setupCollection() {
         collectionViewData.dataSource = self
         collectionViewData.delegate = self
         collectionViewData.register(AboutDataCollectionViewCell.self, forCellWithReuseIdentifier: resuseIdentifier)

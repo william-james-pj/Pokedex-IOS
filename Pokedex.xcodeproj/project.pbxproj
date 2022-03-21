@@ -21,6 +21,7 @@
 		E053C34727DA752700D0EB3A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */; };
 		E053C34827DA752700D0EB3A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */; };
 		E0B6D2F527E8A7E000061871 /* CarouselType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B6D2F427E8A7E000061871 /* CarouselType.swift */; };
+		E0B6D2F727E8BCB900061871 /* StatsDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B6D2F627E8BCB900061871 /* StatsDataCollectionViewCell.swift */; };
 		E0CD8C9A27DF6CAD00F9B92B /* PokemonImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD8C9927DF6CAD00F9B92B /* PokemonImageCollectionViewCell.swift */; };
 		E0CD8C9D27DF7FD600F9B92B /* PokemonTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CD8C9C27DF7FD600F9B92B /* PokemonTypeCollectionViewCell.swift */; };
 		E0E9B14B27E0D93F00705FF4 /* GetColorByType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E9B14A27E0D93F00705FF4 /* GetColorByType.swift */; };
@@ -56,6 +57,7 @@
 		E053C34527DA752700D0EB3A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		E053C34627DA752700D0EB3A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		E0B6D2F427E8A7E000061871 /* CarouselType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselType.swift; sourceTree = "<group>"; };
+		E0B6D2F627E8BCB900061871 /* StatsDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDataCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0CD8C9927DF6CAD00F9B92B /* PokemonImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0CD8C9C27DF7FD600F9B92B /* PokemonTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0E9B14A27E0D93F00705FF4 /* GetColorByType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetColorByType.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				E0F46E9227E4FD9500CB1998 /* AboutDataCollectionViewCell.swift */,
+				E0B6D2F627E8BCB900061871 /* StatsDataCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				E0E9B14B27E0D93F00705FF4 /* GetColorByType.swift in Sources */,
 				E030EE9427DE54F40001661E /* NavigationController.swift in Sources */,
 				E0ED40A627DB7D9100E0A71F /* HomeViewModel.swift in Sources */,
+				E0B6D2F727E8BCB900061871 /* StatsDataCollectionViewCell.swift in Sources */,
 				E0F46E8C27E4E5F100CB1998 /* EvolutionPokemon.swift in Sources */,
 				E0ED40A127DB766700E0A71F /* PokemonDataModel.swift in Sources */,
 				E0F46E8327E4AEE900CB1998 /* PokemonMenuCollectionViewCell.swift in Sources */,
