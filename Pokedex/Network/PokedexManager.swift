@@ -18,7 +18,7 @@ class PokedexManager {
     var delegate: PokedexManagerDelegate?
     
     func fetchPokedex() {
-        let urlString = "\(pokedexURL)/api/v2/pokemon?limit=100&offset=200/"
+        let urlString = "\(pokedexURL)/api/v2/pokemon?limit=3&offset=0/"
         performRequest(with: urlString)
     }
     

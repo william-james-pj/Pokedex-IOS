@@ -10,10 +10,12 @@ import UIKit
 class SeePokemonViewController: UIViewController {
     // MARK: - Constrants
     fileprivate let resuseIdentifier = "PokemonImageCollectionViewCell"
-    fileprivate let resuseIdentifierTypeHeader = "PokemonTypeHeaderCollectionViewCell"
     
     // MARK: - variables
+    fileprivate var pageMenu = PageMenu()
+    fileprivate var carouselType = CarouselType()
     fileprivate var pokemonData: PokemonModel?
+    fileprivate var pokemonColor: UIColor?
     fileprivate var pokemonImage: [String] = []
     fileprivate var getPokemonColor: GetPokemonColor = { return GetColorByType()}()
 
@@ -63,16 +65,6 @@ class SeePokemonViewController: UIViewController {
         return label
     }()
     
-    fileprivate let collectionViewPokemonType: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
-    }()
-    
     fileprivate let collectionViewPokemonImage: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -120,7 +112,7 @@ class SeePokemonViewController: UIViewController {
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.addArrangedSubview(stackTextHeader())
-        stack.addArrangedSubview(collectionViewPokemonType)
+        stack.addArrangedSubview(carouselType)
         stack.addArrangedSubview(stackCaroselHeader())
         return stack
     }
@@ -144,10 +136,6 @@ class SeePokemonViewController: UIViewController {
         collectionViewPokemonImage.dataSource = self
         collectionViewPokemonImage.delegate = self
         collectionViewPokemonImage.register(PokemonImageCollectionViewCell.self, forCellWithReuseIdentifier: resuseIdentifier)
-        
-        collectionViewPokemonType.dataSource = self
-        collectionViewPokemonType.delegate = self
-        collectionViewPokemonType.register(PokemonTypeCollectionViewCell.self, forCellWithReuseIdentifier: resuseIdentifierTypeHeader)
     }
     
     // MARK: - Methods
@@ -156,9 +144,17 @@ class SeePokemonViewController: UIViewController {
         self.labelTitle.text = pokemon.name?.capitalized
         self.pokemonData = pokemon
         
-        viewColor.backgroundColor = getPokemonColor.getColorByType(pokemonType: pokemon.types?[0].type.name ?? "")
-        
         setImageArray()
+        
+        self.pokemonColor = getPokemonColor.getColorByType(pokemonType: pokemon.types?[0].type.name ?? "")
+        
+        guard let pokemonColor = pokemonColor else {
+            return
+        }
+        
+        viewColor.backgroundColor = pokemonColor
+        pageMenu.configCell(pokemon, pokemonColor: pokemonColor)
+        carouselType.configCell(pokemon, cellType: .small)
     }
     
     fileprivate func setImageArray() {
@@ -189,6 +185,7 @@ class SeePokemonViewController: UIViewController {
         view.addSubview(viewColor)
         view.addSubview(stackBase)
         stackBase.addArrangedSubview(stackHeader())
+        stackBase.addArrangedSubview(pageMenu)
         stackBase.addArrangedSubview(viewStackAux)
         
         viewColor.addSubview(viewShadow)
@@ -211,7 +208,6 @@ class SeePokemonViewController: UIViewController {
             stackBase.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             stackBase.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            collectionViewPokemonType.heightAnchor.constraint(equalToConstant: 20),
             collectionViewPokemonImage.heightAnchor.constraint(equalToConstant: 150),
         ])
     }
@@ -232,23 +228,10 @@ extension SeePokemonViewController: UICollectionViewDelegate {
 // MARK: - extension CollectionViewDataSource
 extension SeePokemonViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if  collectionView == collectionViewPokemonType {
-            guard let pokemonData = pokemonData else {
-                return 0
-            }
-            return pokemonData.types?.count ?? 0
-        }
-        
         return pokemonImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if  collectionView == collectionViewPokemonType {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resuseIdentifierTypeHeader, for: indexPath) as! PokemonTypeCollectionViewCell
-            cell.configCell(pokemonType: pokemonData?.types?[indexPath.row].type.name ?? "", cellType: .small)
-            return cell
-        }
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resuseIdentifier, for: indexPath) as! PokemonImageCollectionViewCell
         cell.configCell(urlImage: pokemonImage[indexPath.row])
         return cell
@@ -258,11 +241,6 @@ extension SeePokemonViewController: UICollectionViewDataSource {
 // MARK: - extension CollectionViewDelegateFlowLayout
 extension SeePokemonViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if  collectionView == collectionViewPokemonType {
-            return CGSize(width: 22, height: 20)
-//            return CGSize(width: 85, height: 20)
-        }
-        
         let width = collectionView.frame.width
         return CGSize(width: width, height: 150)
     }

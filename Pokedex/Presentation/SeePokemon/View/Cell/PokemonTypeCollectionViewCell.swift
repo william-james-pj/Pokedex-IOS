@@ -78,7 +78,7 @@ class PokemonTypeCollectionViewCell: UICollectionViewCell {
             stackBase.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackBase.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            imageViewType.widthAnchor.constraint(equalToConstant: 20),
+            labeltype.widthAnchor.constraint(equalToConstant: 63),
         ])
     }
     
@@ -88,7 +88,7 @@ class PokemonTypeCollectionViewCell: UICollectionViewCell {
             self.layer.cornerRadius = 10
             labeltype.isHidden = true
         case .normal:
-            self.layer.cornerRadius = 2
+            self.layer.cornerRadius = 4
             labeltype.isHidden = false
         }
     }
