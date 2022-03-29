@@ -36,7 +36,6 @@
 		E0F46E8527E4C21800CB1998 /* PageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F46E8427E4C21800CB1998 /* PageMenu.swift */; };
 		E0F46E8827E4E4E700CB1998 /* AboutPokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F46E8727E4E4E700CB1998 /* AboutPokemon.swift */; };
 		E0F46E8A27E4E5C600CB1998 /* StatsPokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F46E8927E4E5C600CB1998 /* StatsPokemon.swift */; };
-		E0F46E8C27E4E5F100CB1998 /* EvolutionPokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F46E8B27E4E5F100CB1998 /* EvolutionPokemon.swift */; };
 		E0F46E9327E4FD9500CB1998 /* AboutDataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F46E9227E4FD9500CB1998 /* AboutDataCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +71,6 @@
 		E0F46E8427E4C21800CB1998 /* PageMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMenu.swift; sourceTree = "<group>"; };
 		E0F46E8727E4E4E700CB1998 /* AboutPokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPokemon.swift; sourceTree = "<group>"; };
 		E0F46E8927E4E5C600CB1998 /* StatsPokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsPokemon.swift; sourceTree = "<group>"; };
-		E0F46E8B27E4E5F100CB1998 /* EvolutionPokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionPokemon.swift; sourceTree = "<group>"; };
 		E0F46E9227E4FD9500CB1998 /* AboutDataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDataCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,7 +246,6 @@
 				E0F46E8427E4C21800CB1998 /* PageMenu.swift */,
 				E0F46E8727E4E4E700CB1998 /* AboutPokemon.swift */,
 				E0F46E8927E4E5C600CB1998 /* StatsPokemon.swift */,
-				E0F46E8B27E4E5F100CB1998 /* EvolutionPokemon.swift */,
 			);
 			path = PageMenu;
 			sourceTree = "<group>";
@@ -342,7 +339,6 @@
 				E030EE9427DE54F40001661E /* NavigationController.swift in Sources */,
 				E0ED40A627DB7D9100E0A71F /* HomeViewModel.swift in Sources */,
 				E0B6D2F727E8BCB900061871 /* StatsDataCollectionViewCell.swift in Sources */,
-				E0F46E8C27E4E5F100CB1998 /* EvolutionPokemon.swift in Sources */,
 				E0ED40A127DB766700E0A71F /* PokemonDataModel.swift in Sources */,
 				E0F46E8327E4AEE900CB1998 /* PokemonMenuCollectionViewCell.swift in Sources */,
 				E0ED40A327DB7A7800E0A71F /* PokedexManager.swift in Sources */,

@@ -10,19 +10,24 @@ import UIKit
 enum ViewsMenu {
     case about
     case stats
-    case evolution
+}
+
+struct PageMenuModel {
+    let id: Int
+    let title: String
+    var isActive: Bool
 }
 
 class PageMenu: UIView {
     // MARK: - Constrants
     fileprivate let resuseIdentifierMenu = "PokemonMenuCollectionViewCell"
-    fileprivate let menuItems: [String] = ["About", "Stats", "Evolution"]
     
     // MARK: - Variables
     fileprivate var pokemonData: PokemonModel?
+    fileprivate var pokemonColor: UIColor?
     fileprivate var aboutPokemon = AboutPokemon()
     fileprivate var statsPokemon = StatsPokemon()
-    fileprivate var evolutionPokemon = EvolutionPokemon()
+    fileprivate var menuItems: [PageMenuModel] = [PageMenuModel(id: 0, title: "About", isActive: true), PageMenuModel(id: 1, title: "Stats", isActive: false)]
     
     // MARK: - Components
     fileprivate let stackBase: UIStackView = {
@@ -68,7 +73,6 @@ class PageMenu: UIView {
         
         aboutPokemon.isHidden = false
         statsPokemon.isHidden = true
-        evolutionPokemon.isHidden = true
         
         buildHierarchy()
         buildConstraints()
@@ -84,6 +88,7 @@ class PageMenu: UIView {
     // MARK: - Methods
     func configCell(_ pokemon: PokemonModel, pokemonColor: UIColor) {
         self.pokemonData = pokemon
+        self.pokemonColor = pokemonColor
         
         let aboutPokemonType = AboutPokemonType(
             pokemon: pokemon,
@@ -101,7 +106,6 @@ class PageMenu: UIView {
         stackBase.addArrangedSubview(collectionViewMenu)
         stackBase.addArrangedSubview(aboutPokemon)
         stackBase.addArrangedSubview(statsPokemon)
-        stackBase.addArrangedSubview(evolutionPokemon)
         stackBase.addArrangedSubview(viewStackAux)
     }
     
@@ -123,31 +127,37 @@ class PageMenu: UIView {
             aboutPokemon.isHidden = false
         case .stats:
             statsPokemon.isHidden = false
-        case .evolution:
-            evolutionPokemon.isHidden = false
         }
     }
     
     private func hiddenView() {
         aboutPokemon.isHidden = true
         statsPokemon.isHidden = true
-        evolutionPokemon.isHidden = true
     }
     
 }
-    // MARK: - extension CollectionViewDelegate
-extension PageMenu: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
+// MARK: - extension PokemonMenuCollectionViewCellDelegate
+extension PageMenu: PokemonMenuCollectionViewCellDelegate {
+    func setActive(id: Int) {
+        switch id {
         case 0:
             showView(viewMenu: .about)
         case 1:
             showView(viewMenu: .stats)
-        case 2:
-            showView(viewMenu: .evolution)
         default:
             return
         }
+        
+        menuItems[0].isActive = !menuItems[0].isActive
+        menuItems[1].isActive = !menuItems[1].isActive
+        collectionViewMenu.reloadData()
+    }
+}
+
+// MARK: - extension CollectionViewDelegate
+extension PageMenu: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        return
     }
 }
 
@@ -159,7 +169,10 @@ extension PageMenu: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resuseIdentifierMenu, for: indexPath) as! PokemonMenuCollectionViewCell
-        cell.configCell(with: menuItems[indexPath.row])
+        if let pokemonColor = pokemonColor {
+            cell.configCell(with: menuItems[indexPath.row], pokemonColor: pokemonColor)
+        }
+        cell.delegate = self
         return cell
     }
 }
@@ -168,6 +181,6 @@ extension PageMenu: UICollectionViewDataSource {
 extension PageMenu: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
-        return CGSize(width: (width / 3) - 20, height: 40)
+        return CGSize(width: (width / 2) - 20, height: 40)
     }
 }

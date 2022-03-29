@@ -7,7 +7,16 @@
 
 import UIKit
 
+protocol PokemonMenuCollectionViewCellDelegate: AnyObject {
+    func setActive(id: Int)
+}
+
 class PokemonMenuCollectionViewCell: UICollectionViewCell {
+    // MARK: - Variables
+    fileprivate var menuData: PageMenuModel?
+    fileprivate var pokemonColor: UIColor?
+    var delegate: PokemonMenuCollectionViewCellDelegate?
+    
     // MARK: - Components
     fileprivate let viewBase: UIView = {
         let view = UIView()
@@ -27,12 +36,16 @@ class PokemonMenuCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    fileprivate let labelText: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Roboto-Bold", size: 16)
-        label.textColor = .lightGray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    fileprivate lazy var buttonText: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 16)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .clear
+        button.setTitleColor(.lightGray, for: .normal)
+        button.addTarget(self, action: #selector(handleButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     // MARK: - Lifecycle
@@ -52,13 +65,39 @@ class PokemonMenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
-    func configCell(with itemText: String) {
-        labelText.text = itemText
+    func configCell(with menuItem: PageMenuModel, pokemonColor: UIColor) {
+        buttonText.setTitle(menuItem.title, for: .normal)
+        
+        self.pokemonColor = pokemonColor
+        self.menuData = menuItem
+        
+        setActive(isActive: menuItem.isActive)
+    }
+    
+    fileprivate func setActive(isActive: Bool){
+        if !isActive {
+            buttonText.setTitleColor(.lightGray, for: .normal)
+            return
+        }
+        
+        guard let pokemonColor = pokemonColor else {
+            return
+        }
+
+        buttonText.setTitleColor(pokemonColor, for: .normal)
+    }
+    
+    @objc private func handleButtonTapped() {
+        guard let delegate = delegate, let menuData = menuData else {
+            return
+        }
+
+        delegate.setActive(id: menuData.id)
     }
     
     fileprivate func buildHierarchy() {
         self.addSubview(viewBase)
-        viewBase.addSubview(labelText)
+        viewBase.addSubview(buttonText)
     }
     
     fileprivate func buildConstraints() {
@@ -68,8 +107,10 @@ class PokemonMenuCollectionViewCell: UICollectionViewCell {
             viewBase.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
             viewBase.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             
-            labelText.centerXAnchor.constraint(equalTo: viewBase.centerXAnchor),
-            labelText.centerYAnchor.constraint(equalTo: viewBase.centerYAnchor),
+            buttonText.topAnchor.constraint(equalTo: self.topAnchor),
+            buttonText.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            buttonText.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            buttonText.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }
 }
