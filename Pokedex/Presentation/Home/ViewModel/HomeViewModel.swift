@@ -14,6 +14,7 @@ protocol HomeViewModelDelegate {
 class HomeViewModel {
     fileprivate var pokedexManager = PokedexManager()
     fileprivate var pokemonManager = PokemonManager()
+    fileprivate var nextUrl: String?
     var pokemonsData: [PokemonModel] = []
     var delegate: HomeViewModelDelegate?
     
@@ -36,11 +37,20 @@ class HomeViewModel {
         }
     }
     
+    func featchNextPokedex() {
+        guard let nextUrl = nextUrl else {
+            return
+        }
+
+        pokedexManager.fetchPokedexByURL(urlString: nextUrl)
+    }
+    
 }
 
 extension HomeViewModel: PokedexManagerDelegate {
     func didUpdatePokedex(_ pokedexManager: PokedexManager, pokedex: PokedexDataModel) {
         DispatchQueue.main.async {
+            self.nextUrl = pokedex.next
             self.loadPokemon(pokedex.results)
         }
     }

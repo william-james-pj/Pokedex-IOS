@@ -22,6 +22,10 @@ class PokedexManager {
         performRequest(with: urlString)
     }
     
+    func fetchPokedexByURL(urlString: String) {
+        performRequest(with: urlString)
+    }
+    
     fileprivate func performRequest(with urlString: String) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)

@@ -107,10 +107,10 @@ class PokemonMenuCollectionViewCell: UICollectionViewCell {
             viewBase.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
             viewBase.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
             
-            buttonText.topAnchor.constraint(equalTo: self.topAnchor),
-            buttonText.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            buttonText.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            buttonText.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            buttonText.topAnchor.constraint(equalTo: viewBase.topAnchor),
+            buttonText.leadingAnchor.constraint(equalTo: viewBase.leadingAnchor),
+            buttonText.trailingAnchor.constraint(equalTo: viewBase.trailingAnchor),
+            buttonText.bottomAnchor.constraint(equalTo: viewBase.bottomAnchor),
         ])
     }
 }

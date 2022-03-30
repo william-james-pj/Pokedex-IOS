@@ -10,6 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
     // MARK: - Constrants
     let resuseIdentifier = "PokemonCollectionViewCell"
+    let footerReuseIdentifier = "FooterCollectionReusableView"
+    let headerReuseIdentifier = "HeaderCollectionReusableView"
     
     // MARK: - Variables
     fileprivate var viewModel: HomeViewModel = {
@@ -132,7 +134,9 @@ class HomeViewController: UIViewController {
     fileprivate func setupCollection() {
         pokedexCollectionView.dataSource = self
         pokedexCollectionView.delegate = self
+        
         pokedexCollectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: resuseIdentifier)
+        pokedexCollectionView.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier)
     }
     
     // MARK: - Methods
@@ -165,6 +169,13 @@ extension HomeViewController: HomeViewModelDelegate {
     }
 }
 
+// MARK: - extension FooterCollectionReusableViewDelegate
+extension HomeViewController: FooterCollectionReusableViewDelegate {
+    func buttonFooterPressed() {
+        viewModel.featchNextPokedex()
+    }
+}
+
 // MARK: - extension CollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -185,6 +196,20 @@ extension HomeViewController: UICollectionViewDataSource {
         cell.configCell(pokemon: pokemonsData[indexPath.row])
         return cell
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
+            return header
+        case UICollectionView.elementKindSectionFooter:
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerReuseIdentifier, for: indexPath) as! FooterCollectionReusableView
+            footer.delegate = self
+            return footer
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
 }
 
 // MARK: - extension CollectionViewDelegateFlowLayout
@@ -192,6 +217,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2
         return CGSize(width: width - 10, height: 250)
+    }
+    
+    // Footer
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        let width = collectionView.frame.width
+        return CGSize(width: width, height: 90)
     }
 }
 
