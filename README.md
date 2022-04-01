@@ -23,6 +23,8 @@
 
 ## Sobre o projeto
 
+![screenshot](.github/cover.jpg)
+
 Esse projeto permite navegar por uma lista de Pokémons e ter acesso a seus dados e suas estatísticas.
 
 ### Construído com
